@@ -19,7 +19,7 @@ COUNTRIES_DATA = {
         "Rajasthan": ["Jaipur", "Jodhpur", "Udaipur", "Kota", "Ajmer"],
         "Uttar Pradesh": ["Lucknow", "Kanpur", "Ghaziabad", "Agra", "Varanasi"],
         "West Bengal": ["Kolkata", "Howrah", "Durgapur", "Asansol", "Siliguri"],
-        "madhya_pradesh_cities" : ["Bhopal","Indore","Jabalpur","Gwalior","Ujjain","Sagar","Rewa","Satna","Ratlam","Dewas","Katni","Singrauli","Burhanpur","Khandwa","Chhindwara","Shivpuri","Vidisha","Sehore","Hoshangabad","Itarsi","Betul","Harda","Seoni","Balaghat","Mandla","Narsinghpur","Damoh","Panna","Chhatarpur","Tikamgarh","Datia","Bhind","Morena","Sheopur","Guna","Ashoknagar","Rajgarh","Shajapur","Neemuch","Mandsaur","Agar Malwa","Alirajpur","Jhabua","Dhar","Barwani","Khargone","Anuppur","Shahdol","Umaria","Sidhi","Maihar","Mauganj","Nagda","Mandideep","Pithampur","Sanawad","Sarni","Dabra","Bina","Pipariya","Multai","Panagar","Raisen"]
+        "Madhya pradesh" : ["Bhopal","Indore","Jabalpur","Gwalior","Ujjain","Sagar","Rewa","Satna","Ratlam","Dewas","Katni","Singrauli","Burhanpur","Khandwa","Chhindwara","Shivpuri","Vidisha","Sehore","Hoshangabad","Itarsi","Betul","Harda","Seoni","Balaghat","Mandla","Narsinghpur","Damoh","Panna","Chhatarpur","Tikamgarh","Datia","Bhind","Morena","Sheopur","Guna","Ashoknagar","Rajgarh","Shajapur","Neemuch","Mandsaur","Agar Malwa","Alirajpur","Jhabua","Dhar","Barwani","Khargone","Anuppur","Shahdol","Umaria","Sidhi","Maihar","Mauganj","Nagda","Mandideep","Pithampur","Sanawad","Sarni","Dabra","Bina","Pipariya","Multai","Panagar","Raisen"]
 
     },
     "United States": {
