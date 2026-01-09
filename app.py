@@ -124,8 +124,6 @@ COUNTRIES_DATA = {
             "Kolkata","Howrah","Durgapur","Asansol",
             "Siliguri","Kharagpur","Malda","Bardhaman"
         ],
-
-        # UNION TERRITORIES
         "Delhi": [
             "New Delhi","North Delhi","South Delhi","East Delhi",
             "West Delhi","Central Delhi"
@@ -151,11 +149,6 @@ COUNTRIES_DATA = {
         "Dadra and Nagar Haveli and Daman and Diu": [
             "Daman","Diu","Silvassa"
         ]
-    }
-}
-
-
-
     },
     "United States": {
         "California": ["Los Angeles", "San Francisco", "San Diego", "Sacramento"],
@@ -164,18 +157,18 @@ COUNTRIES_DATA = {
     },
     "United Kingdom": {
         "England": ["London", "Manchester", "Birmingham", "Liverpool"],
-        "Scotland": ["Edinburgh", "Glasgow", "Aberdeen", "Dundee"],
+        "Scotland": ["Edinburgh", "Glasgow", "Aberdeen", "Dundee"]
     },
     "Canada": {
         "Ontario": ["Toronto", "Ottawa", "Mississauga", "Hamilton"],
-        "Quebec": ["Montreal", "Quebec City", "Laval", "Gatineau"],
+        "Quebec": ["Montreal", "Quebec City", "Laval", "Gatineau"]
     }
 }
 
 # Email Configuration
 EMAIL_CONFIG = {
-    'sender_email': 'amanpandit4756@gmail.com',  # Replace with your email
-    'sender_password': 'agyb kiry rorx wroq',   # Replace with your app password
+    'sender_email': 'amanpandit4756@gmail.com',
+    'sender_password': 'agyb kiry rorx wroq',
     'smtp_server': 'smtp.gmail.com',
     'smtp_port': 465
 }
@@ -288,7 +281,6 @@ def get_cities(country, state):
 def submit_donation():
     """Process donation form submission"""
     try:
-        # Get form data
         data = request.form
         
         name = data.get('name', '').strip()
@@ -302,7 +294,6 @@ def submit_donation():
         amount = data.get('amount', '').strip()
         donation_type = data.get('donation_type', '').strip()
         
-        # Validation
         errors = []
         
         if not name:
@@ -344,13 +335,9 @@ def submit_donation():
         if errors:
             return jsonify({'success': False, 'errors': errors}), 400
         
-        # Send confirmation email
         email_sent, email_message = send_confirmation_email(
             name, email, amount, donation_for, donation_type
         )
-        
-        # Here you can add code to save to database
-        # save_to_database(data)
         
         return jsonify({
             'success': True,
