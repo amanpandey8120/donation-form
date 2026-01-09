@@ -10,16 +10,151 @@ app = Flask(__name__)
 # Country-State-City Data
 COUNTRIES_DATA = {
     "India": {
-        "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Nellore", "Tirupati"],
-        "Karnataka": ["Bangalore", "Mysore", "Hubli", "Mangalore", "Belgaum"],
-        "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"],
-        "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem"],
-        "Delhi": ["New Delhi", "North Delhi", "South Delhi", "East Delhi", "West Delhi"],
-        "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar"],
-        "Rajasthan": ["Jaipur", "Jodhpur", "Udaipur", "Kota", "Ajmer"],
-        "Uttar Pradesh": ["Lucknow", "Kanpur", "Ghaziabad", "Agra", "Varanasi"],
-        "West Bengal": ["Kolkata", "Howrah", "Durgapur", "Asansol", "Siliguri"],
-        "Madhya pradesh" : ["Bhopal","Indore","Jabalpur","Gwalior","Ujjain","Sagar","Rewa","Satna","Ratlam","Dewas","Katni","Singrauli","Burhanpur","Khandwa","Chhindwara","Shivpuri","Vidisha","Sehore","Hoshangabad","Itarsi","Betul","Harda","Seoni","Balaghat","Mandla","Narsinghpur","Damoh","Panna","Chhatarpur","Tikamgarh","Datia","Bhind","Morena","Sheopur","Guna","Ashoknagar","Rajgarh","Shajapur","Neemuch","Mandsaur","Agar Malwa","Alirajpur","Jhabua","Dhar","Barwani","Khargone","Anuppur","Shahdol","Umaria","Sidhi","Maihar","Mauganj","Nagda","Mandideep","Pithampur","Sanawad","Sarni","Dabra","Bina","Pipariya","Multai","Panagar","Raisen"]
+        "Andhra Pradesh": [
+            "Visakhapatnam","Vijayawada","Guntur","Nellore","Tirupati",
+            "Kurnool","Rajahmundry","Eluru","Ongole","Anantapur"
+        ],
+        "Arunachal Pradesh": [
+            "Itanagar","Naharlagun","Pasighat","Tawang","Ziro"
+        ],
+        "Assam": [
+            "Guwahati","Silchar","Dibrugarh","Jorhat","Nagaon",
+            "Tezpur","Tinsukia","Bongaigaon"
+        ],
+        "Bihar": [
+            "Patna","Gaya","Bhagalpur","Muzaffarpur","Darbhanga",
+            "Purnia","Ara","Begusarai"
+        ],
+        "Chhattisgarh": [
+            "Raipur","Bhilai","Bilaspur","Korba","Durg",
+            "Jagdalpur","Ambikapur","Rajnandgaon"
+        ],
+        "Goa": [
+            "Panaji","Margao","Vasco da Gama","Mapusa","Ponda"
+        ],
+        "Gujarat": [
+            "Ahmedabad","Surat","Vadodara","Rajkot","Bhavnagar",
+            "Jamnagar","Junagadh","Anand","Nadiad"
+        ],
+        "Haryana": [
+            "Chandigarh","Gurgaon","Faridabad","Panipat","Ambala",
+            "Hisar","Karnal","Rohtak","Sonipat"
+        ],
+        "Himachal Pradesh": [
+            "Shimla","Dharamshala","Solan","Mandi","Kullu",
+            "Una","Hamirpur","Bilaspur"
+        ],
+        "Jharkhand": [
+            "Ranchi","Jamshedpur","Dhanbad","Bokaro","Hazaribagh",
+            "Giridih","Ramgarh","Chaibasa"
+        ],
+        "Karnataka": [
+            "Bangalore","Mysore","Hubli","Dharwad","Mangalore",
+            "Belgaum","Bellary","Tumkur","Shimoga","Udupi"
+        ],
+        "Kerala": [
+            "Thiruvananthapuram","Kochi","Kozhikode","Thrissur",
+            "Kollam","Alappuzha","Palakkad","Kannur"
+        ],
+        "Madhya Pradesh": [
+            "Bhopal","Indore","Jabalpur","Gwalior","Ujjain","Sagar",
+            "Rewa","Satna","Ratlam","Dewas","Katni","Singrauli",
+            "Burhanpur","Khandwa","Chhindwara","Shivpuri","Vidisha",
+            "Sehore","Hoshangabad","Itarsi","Betul","Harda","Seoni",
+            "Balaghat","Mandla","Narsinghpur","Damoh","Panna",
+            "Chhatarpur","Tikamgarh","Datia","Bhind","Morena",
+            "Sheopur","Guna","Ashoknagar","Rajgarh","Shajapur",
+            "Neemuch","Mandsaur","Agar","Alirajpur","Jhabua","Dhar",
+            "Barwani","Khargone","Anuppur","Shahdol","Umaria",
+            "Sidhi","Maihar","Mauganj","Nagda","Mandideep",
+            "Pithampur","Sanawad","Sarni","Dabra","Bina","Pipariya",
+            "Multai","Panagar","Raisen"
+        ],
+        "Maharashtra": [
+            "Mumbai","Pune","Nagpur","Nashik","Aurangabad",
+            "Thane","Solapur","Kolhapur","Amravati","Akola"
+        ],
+        "Manipur": [
+            "Imphal","Thoubal","Bishnupur","Churachandpur","Ukhrul"
+        ],
+        "Meghalaya": [
+            "Shillong","Tura","Nongstoin","Jowai","Baghmara"
+        ],
+        "Mizoram": [
+            "Aizawl","Lunglei","Champhai","Serchhip","Kolasib"
+        ],
+        "Nagaland": [
+            "Kohima","Dimapur","Mokokchung","Tuensang","Wokha"
+        ],
+        "Odisha": [
+            "Bhubaneswar","Cuttack","Rourkela","Puri","Sambalpur",
+            "Balasore","Baripada","Jharsuguda"
+        ],
+        "Punjab": [
+            "Chandigarh","Ludhiana","Amritsar","Jalandhar",
+            "Patiala","Bathinda","Hoshiarpur","Mohali"
+        ],
+        "Rajasthan": [
+            "Jaipur","Jodhpur","Udaipur","Kota","Ajmer",
+            "Bikaner","Alwar","Sikar","Bharatpur"
+        ],
+        "Sikkim": [
+            "Gangtok","Namchi","Gyalshing","Mangan","Rangpo"
+        ],
+        "Tamil Nadu": [
+            "Chennai","Coimbatore","Madurai","Tiruchirappalli",
+            "Salem","Erode","Vellore","Tirunelveli","Thoothukudi"
+        ],
+        "Telangana": [
+            "Hyderabad","Warangal","Nizamabad","Khammam",
+            "Karimnagar","Mahbubnagar","Adilabad"
+        ],
+        "Tripura": [
+            "Agartala","Dharmanagar","Udaipur","Kailashahar","Belonia"
+        ],
+        "Uttar Pradesh": [
+            "Lucknow","Kanpur","Ghaziabad","Agra","Varanasi",
+            "Prayagraj","Noida","Meerut","Aligarh","Bareilly"
+        ],
+        "Uttarakhand": [
+            "Dehradun","Haridwar","Roorkee","Nainital",
+            "Rudrapur","Haldwani","Rishikesh"
+        ],
+        "West Bengal": [
+            "Kolkata","Howrah","Durgapur","Asansol",
+            "Siliguri","Kharagpur","Malda","Bardhaman"
+        ],
+
+        # UNION TERRITORIES
+        "Delhi": [
+            "New Delhi","North Delhi","South Delhi","East Delhi",
+            "West Delhi","Central Delhi"
+        ],
+        "Jammu and Kashmir": [
+            "Srinagar","Jammu","Anantnag","Baramulla","Udhampur"
+        ],
+        "Ladakh": [
+            "Leh","Kargil"
+        ],
+        "Puducherry": [
+            "Puducherry","Karaikal","Mahe","Yanam"
+        ],
+        "Chandigarh": [
+            "Chandigarh"
+        ],
+        "Andaman and Nicobar Islands": [
+            "Port Blair","Diglipur","Car Nicobar"
+        ],
+        "Lakshadweep": [
+            "Kavaratti","Agatti","Minicoy"
+        ],
+        "Dadra and Nagar Haveli and Daman and Diu": [
+            "Daman","Diu","Silvassa"
+        ]
+    }
+}
+
+
 
     },
     "United States": {
