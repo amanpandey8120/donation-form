@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Registration Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .section-header {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4CAF50;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .alert ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4CAF50;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Donation Registration Form</h1>
+            <p>Your generosity makes a difference</p>
+        </div>
+
+        <div class="form-container">
+            <div id="alert" class="alert"></div>
+
+            <form id="donationForm">
+                <!-- Personal Information Section -->
+                <h2 class="section-header">Personal Information</h2>
+
+                <div class="form-group">
+                    <label for="name">Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile">Mobile Number <span class="required">*</span></label>
+                    <input type="tel" id="mobile" name="mobile" placeholder="10-digit mobile number" maxlength="10" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" name="address" placeholder="Enter your complete address"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country <span class="required">*</span></label>
+                    <select id="country" name="country" required>
+                        <option value="">Select Country</option>
+                        {% for country in countries %}
+                        <option value="{{ country }}">{{ country }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="state">State <span class="required">*</span></label>
+                    <select id="state" name="state" required disabled>
+                        <option value="">Select State</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City <span class="required">*</span></label>
+                    <select id="city" name="city" required disabled>
+                        <option value="">Select City</option>
+                    </select>
+                </div>
+
+                <!-- Donation Details Section -->
+                <h2 class="section-header">Donation Details</h2>
+
+                <div class="form-group">
+                    <label for="donation_for">Donation For <span class="required">*</span></label>
+                    <select id="donation_for" name="donation_for" required>
+                        <option value="">Select Purpose</option>
+                        <option value="Food">Food</option>
+                        <option value="AIIMS">AIIMS</option>
+                        <option value="GD">GD</option>
+                        <option value="KF">KF</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="amount">Donation Amount (₹) <span class="required">*</span></label>
+                    <input type="number" id="amount" name="amount" placeholder="Enter amount" min="1" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="donation_type">Donation Type <span class="required">*</span></label>
+                    <select id="donation_type" name="donation_type" required>
+                        <option value="">Select Payment Method</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Online">Online</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">Submit Donation</button>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Processing your donation...</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('donationForm');
+        const countrySelect = document.getElementById('country');
+        const stateSelect = document.getElementById('state');
+        const citySelect = document.getElementById('city');
+        const submitBtn = document.getElementById('submitBtn');
+        const loading = document.getElementById('loading');
+        const alertDiv = document.getElementById('alert');
+
+        // Handle country change
+        countrySelect.addEventListener('change', async function() {
+            const country = this.value;
+            stateSelect.disabled = true;
+            citySelect.disabled = true;
+            stateSelect.innerHTML = '<option value="">Select State</option>';
+            citySelect.innerHTML = '<option value="">Select City</option>';
+
+            if (country) {
+                try {
+                    const response = await fetch(`/api/states/${encodeURIComponent(country)}`);
+                    const states = await response.json();
+                    
+                    states.forEach(state => {
+                        const option = document.createElement('option');
+                        option.value = state;
+                        option.textContent = state;
+                        stateSelect.appendChild(option);
+                    });
+                    
+                    stateSelect.disabled = false;
+                } catch (error) {
+                    console.error('Error loading states:', error);
+                }
+            }
+        });
+
+        // Handle state change
+        stateSelect.addEventListener('change', async function() {
+            const country = countrySelect.value;
+            const state = this.value;
+            citySelect.disabled = true;
+            citySelect.innerHTML = '<option value="">Select City</option>';
+
+            if (country && state) {
+                try {
+                    const response = await fetch(`/api/cities/${encodeURIComponent(country)}/${encodeURIComponent(state)}`);
+                    const cities = await response.json();
+                    
+                    cities.forEach(city => {
+                        const option = document.createElement('option');
+                        option.value = city;
+                        option.textContent = city;
+                        citySelect.appendChild(option);
+                    });
+                    
+                    citySelect.disabled = false;
+                } catch (error) {
+                    console.error('Error loading cities:', error);
+                }
+            }
+        });
+
+        // Handle form submission
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Hide any previous alerts
+            alertDiv.style.display = 'none';
+            
+            // Show loading
+            submitBtn.disabled = true;
+            loading.style.display = 'block';
+
+            try {
+                const formData = new FormData(form);
+                
+                const response = await fetch('/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showAlert('success', result.message);
+                    form.reset();
+                    stateSelect.disabled = true;
+                    citySelect.disabled = true;
+                    
+                    // Scroll to top to see success message
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    showAlert('error', 'Please correct the following errors:', result.errors);
+                }
+            } catch (error) {
+                showAlert('error', 'An error occurred. Please try again.');
+                console.error('Error:', error);
+            } finally {
+                submitBtn.disabled = false;
+                loading.style.display = 'none';
+            }
+        });
+
+        function showAlert(type, message, errors = []) {
+            alertDiv.className = `alert alert-${type}`;
+            
+            let html = `<strong>${message}</strong>`;
+            
+            if (errors.length > 0) {
+                html += '<ul>';
+                errors.forEach(error => {
+                    html += `<li>${error}</li>`;
+                });
+                html += '</ul>';
+            }
+            
+            alertDiv.innerHTML = html;
+            alertDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
